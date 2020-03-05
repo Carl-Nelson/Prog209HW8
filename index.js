@@ -1,50 +1,67 @@
 let userArray = [];
+let gameArray = [];
+let reviewArray = [];
+let currentUser = "You are not logged in";
 
-
-// define a constructor to create player objects
-var PlayerObject = function (pPlayerID, pName) {
-  this.PlayerID = pPlayerID;
-  this.PlayerName = pName;
+var GameObject = function(name, year, genre) {
+  this.name = name;
+  this.year = year;
+  this.genre = genre;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+gameArray.push(new GameObject("game1", 2000, "Real Time Strategy"));
+gameArray.push(new GameObject("game2", 2001, "First Person Shooter"));
+gameArray.push(new GameObject("game3", 2002, "Turn Based Strategy"));
+gameArray.push(new GameObject("game4", 2000, "Action Adventure"));
+gameArray.push(new GameObject("game5", 2001, "Real Time Strategy"));
+gameArray.push(new GameObject("game6", 2002, "First Person Shooter"));
 
-player0 = new PlayerObject(0,"firstPerson");
-player1 = new PlayerObject(1,"secondPerson");
-player2 = new PlayerObject(2,"thirdPerson");
+var ReviewObject = function(gameName, review, rating, user) {
+  this.gameName = gameName; //gonna associate games n' reviews via the name
+  this.review = review;
+  this.rating = rating;
+  this.user = user;
+}
 
-userArray.push(player0);
-userArray.push(player1);
-userArray.push(player2);
+// define a constructor to create user objects
+var userObject = function (Name) {
+  this.name = Name;
+}
 
-console.log(userArray);
 
-$(document).on("pagebeforeshow", "#page2", function (event) {   // have to use jQuery 
- // document.getElementById("IDparmHere").innerHTML = "";
-  createList();
-});
-
-});
 
 function createList()
 {
   // clear prior data
-  var divUserlist = document.getElementById("divUserlist");
-  while (divUserlist.firstChild) {    // remove any old data so don't get duplicates
-      divUserlist.removeChild(divUserlist.firstChild);
-  };
+  var divUserlist = $("#divUserlist");
+  // while (divUserlist.firstChild) {    // remove any old data so don't get duplicates
+  //     divUserlist.removeChild(divUserlist.firstChild);
+  // };
 
-  var ul = document.createElement('ul');  
-  userArray.forEach(function (element,) {   // use handy array forEach method
-    var li = document.createElement('li');
-    li.innerHTML = "<a data-transition='pop' class='onePlayer' data-parm=" + element.PlayerID + "  href='#page3'>Jump </a> " + element.PlayerName;
-    ul.appendChild(li);
-  });
-  divUserlist.appendChild(ul)
+  gameArray.forEach(function (element,) {   // use handy array forEach method
+    let content = `<div data-role='collapsible' data-theme='b' data-content-theme='a'><h3>${element.name}</h3>
+                  <p>Year:${element.year}<br>Genre:${element.genre}</p></div>`;
+      //time to do things the jquery way
+      divUserlist.append(content).collapsibleset("refresh");//add the new collapsible widget to the set, then refresh the set
+    });
 
-    // set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
-    var classname = document.getElementsByClassName("onePlayer");
-    Array.from(classname).forEach(function (element) {
+  // var ul = document.createElement('div');
+  // ul.setAttribute("data-role","collapsible-set");
+  // ul.setAttribute("data-theme","b");
+  // ul.setAttribute("data-content-theme","a");
+  // userArray.forEach(function (element,) {   // use handy array forEach method
+  //   var li = document.createElement('div');
+  //   ul.setAttribute("data-role","collapsible");
+  //   ul.setAttribute("data-theme","b");
+  //   ul.setAttribute("data-content-theme","a");
+  //   li.innerHTML = "<a data-transition='pop' class='onePlayer' data-parm=" + element.name + "  href='#page3'>Jump </a> " + element.name;
+  //   ul.append(li);
+  // });
+  // divUserlist.append(ul);
+
+  // set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
+  var classname = document.getElementsByClassName("onePlayer");
+  Array.from(classname).forEach(function (element) {
         element.addEventListener('click', function(){
             var parm = this.getAttribute("data-parm");  // passing in the record.Id
             console.log(parm);
@@ -53,4 +70,23 @@ function createList()
             document.location.href = "index.html#page3";
         });
     });
-  } ;
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    player0 = new userObject("firstPerson");
+    player1 = new userObject("secondPerson");
+    player2 = new userObject("thirdPerson");
+
+    userArray.push(player0);
+    userArray.push(player1);
+    userArray.push(player2);
+
+    console.log(userArray);
+
+    $(document).on("pagebeforeshow", "#page3", function (event) {   // have to use jQuery 
+    // document.getElementById("IDparmHere").innerHTML = "";
+      createList();
+    });
+
+});

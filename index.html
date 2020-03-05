@@ -56,7 +56,13 @@
         <div data-role="page"  id="page1">
             <!--  page1 page header -->
             <div data-role="header" data-theme='b'>
-              <h1>The Amazing Video Game Warehouse!</h1>
+              <div class="titlebar">
+                <h1>The Amazing Video Game Warehouse!</h1>
+                <div class="logindiv">
+                  <label for="login">Log-in</label>
+                  <input type="text" id="login" placeholder="User ID">
+                </div>
+              </div>
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
@@ -84,7 +90,13 @@
     <div data-role="page"  id="page2">
             <!--  gamelost page header -->
             <div data-role="header" data-theme='b'>
-              <h1>The Amazing Video Game Warehouse!</h1>
+              <div class="titlebar">
+                <h1>The Amazing Video Game Warehouse!</h1>
+                <div class="logindiv">
+                  <label for="login">Log-in</label>
+                  <input type="text" id="login" placeholder="User ID">
+                </div>
+              </div>
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
@@ -106,11 +118,17 @@
         </div>
     </div>
 
-    <!-- Start of gamewon page -->
+    <!-- Start of uploadReview page -->
     <div data-role="page"  id="page3">
             <!--  gamewon page header -->
             <div data-role="header" data-theme='b'>
-              <h1>The Amazing Video Game Warehouse!</h1>
+              <div class="titlebar">
+                <h1>The Amazing Video Game Warehouse!</h1>
+                <div class="logindiv">
+                  <label for="login">Log-in</label>
+                  <input type="text" id="login" placeholder="User ID">
+                </div>
+              </div>
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
@@ -122,11 +140,12 @@
           </div>
             <!--  gamewon page content -->
             <div data-role="content" data-theme='e'>
-                <p> This page will let the user submit a review for a game, which will then be associated with that game,
+                <p> 
+                   This page will let the user submit a review for a game, which will then be associated with that game,
                    and be visible on the other pages if the user clicks the button to show reviews on a game.
                    That's not gonna be as tricky as it might sound, since we're working with jquery here.
                 </p>
-              
+                <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=divUserlist></div>
             </div>
               
             <!--  gamewon page footer -->
@@ -135,7 +154,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>
