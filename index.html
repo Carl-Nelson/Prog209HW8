@@ -32,8 +32,7 @@
                 <div data-role="navbar"  data-theme='c'>
                     <ul>
                       <li><a href="#home">Home</a></li>
-                      <li><a href="#page1">Search</a></li>
-                      <li><a href="#page2">Sort</a></li>
+                      <li><a href="#page1">Browse Games</a></li>
                       <li><a href="#page3">Submit a Review</a></li>
                     </ul>
                   </div><!-- /navbar -->
@@ -66,8 +65,7 @@
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#page1">Search</a></li>
-                    <li><a href="#page2">Sort</a></li>
+                    <li><a href="#page1">Browse Games</a></li>
                     <li><a href="#page3">Submit a Review</a></li>
                   </ul>
                 </div><!-- /navbar -->
@@ -76,6 +74,7 @@
             <div data-role="content" data-theme='e'>
                 <h2>This page will allow you to search for a game based on a criteria, e.g. name, year,
                    possibly genre if I feel like it</h2>
+                   <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=divUserlist></div>
             </div>
               
             <!--  newaccount page footer -->
@@ -86,9 +85,9 @@
 
 
 
-    <!-- Start of gamelost page -->
-    <div data-role="page"  id="page2">
-            <!--  gamelost page header -->
+    <!-- Start of details page -->
+    <div data-role="page"  id="details">
+            <!--  details page header -->
             <div data-role="header" data-theme='b'>
               <div class="titlebar">
                 <h1>The Amazing Video Game Warehouse!</h1>
@@ -100,18 +99,17 @@
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#page1">Search</a></li>
-                    <li><a href="#page2">Sort</a></li>
+                    <li><a href="#page1">Browse Games</a></li>
                     <li><a href="#page3">Submit a Review</a></li>
                   </ul>
                 </div><!-- /navbar -->
           </div>
-            <!--  gamelost page content -->
+            <!--  details page content -->
             <div data-role="content" data-theme='e'>
-              <p>For now I'm just going to let the user sort the list of games based on some criteria on this page.</p>
+              <div id=""></div>
             </div>
               
-            <!--  gamelost page footer -->
+            <!--  details page footer -->
             <div data-role="footer" data-theme='b'>
               <h1>Copyright 2020 by Carl Nelson</h1>
             </div>
@@ -120,7 +118,7 @@
 
     <!-- Start of uploadReview page -->
     <div data-role="page"  id="page3">
-            <!--  gamewon page header -->
+            <!--  uploadReview page header -->
             <div data-role="header" data-theme='b'>
               <div class="titlebar">
                 <h1>The Amazing Video Game Warehouse!</h1>
@@ -132,23 +130,22 @@
               <div data-role="navbar"  data-theme='c'>
                   <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#page1">Search</a></li>
-                    <li><a href="#page2">Sort</a></li>
+                    <li><a href="#page1">Browse Games</a></li>
                     <li><a href="#page3">Submit a Review</a></li>
                   </ul>
                 </div><!-- /navbar -->
           </div>
-            <!--  gamewon page content -->
+            <!--  uploadReview page content -->
             <div data-role="content" data-theme='e'>
                 <p> 
                    This page will let the user submit a review for a game, which will then be associated with that game,
                    and be visible on the other pages if the user clicks the button to show reviews on a game.
                    That's not gonna be as tricky as it might sound, since we're working with jquery here.
                 </p>
-                <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=divUserlist></div>
+                
             </div>
               
-            <!--  gamewon page footer -->
+            <!--  uploadReview page footer -->
             <div data-role="footer" data-theme='b'>
               <h1>Copyright 2020 by Carl Nelson</h1>
             </div>

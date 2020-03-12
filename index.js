@@ -39,9 +39,10 @@ function createList()
   // };
 
   gameArray.forEach(function (element,) {   // use handy array forEach method
-    let content = `<div data-role='collapsible' data-theme='b' data-content-theme='a'><h3>${element.name}</h3>
-                  <p>Year:${element.year}<br>Genre:${element.genre}</p></div>`;
-      //time to do things the jquery way
+    //did you know javascript has string interpolation? I didn't! They call 'em template strings apparently
+    let content = `<div data-role='collapsible' data-theme='b' data-content-theme='a' data-parm='${element.name}'><h3>${element.name}</h3>
+                  <p>Year:${element.year}<br>Genre:${element.genre}<br>
+                  <button class="addButton">Add to library</button><button class="detailButton">View Details</button></p></div>`;
       divUserlist.append(content).collapsibleset("refresh");//add the new collapsible widget to the set, then refresh the set
     });
 
@@ -60,14 +61,14 @@ function createList()
   // divUserlist.append(ul);
 
   // set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
-  var classname = document.getElementsByClassName("onePlayer");
+  var classname = document.getElementsByClassName("oneGame");
   Array.from(classname).forEach(function (element) {
         element.addEventListener('click', function(){
             var parm = this.getAttribute("data-parm");  // passing in the record.Id
             console.log(parm);
             //do something here with parameter on  pickbet page
             document.getElementById("IDparmHere").innerHTML = parm;
-            document.location.href = "index.html#page3";
+            document.location.href = "index.html#details";
         });
     });
 };
@@ -84,7 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(userArray);
 
-    $(document).on("pagebeforeshow", "#page3", function (event) {   // have to use jQuery 
+    createList();
+
+    $(document).on("pagebeforeshow", "#home", function (event) {   // have to use jQuery 
     // document.getElementById("IDparmHere").innerHTML = "";
       createList();
     });
