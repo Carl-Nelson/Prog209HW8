@@ -9,13 +9,6 @@ var GameObject = function(name, year, genre) {
   this.genre = genre;
 }
 
-gameArray.push(new GameObject("game1", 2000, "Real Time Strategy"));
-gameArray.push(new GameObject("game2", 2001, "First Person Shooter"));
-gameArray.push(new GameObject("game3", 2002, "Turn Based Strategy"));
-gameArray.push(new GameObject("game4", 2000, "Action Adventure"));
-gameArray.push(new GameObject("game5", 2001, "Real Time Strategy"));
-gameArray.push(new GameObject("game6", 2002, "First Person Shooter"));
-
 var ReviewObject = function(gameName, review, rating, user) {
   this.gameName = gameName; //gonna associate games n' reviews via the name
   this.review = review;
@@ -32,17 +25,18 @@ var userObject = function (Name) {
 
 function createList()
 {
-  // clear prior data
+  //oddly enough the jquery mobile collapsible set stuff below doesn't work unless I use jquery to get the div
   var divUserlist = $("#divUserlist");
-  // while (divUserlist.firstChild) {    // remove any old data so don't get duplicates
-  //     divUserlist.removeChild(divUserlist.firstChild);
-  // };
+  //and this next line doesn't work unless I use plain ole html to grab the div
+  document.getElementById("divUserlist").innerHTML = "";// remove old data
+  //conclusion? I hate jquery mobile. jquery is fine. jquery mobile? there's probably a reason it was abandoned years ago.
 
-  gameArray.forEach(function (element,) {   // use handy array forEach method
+  gameArray.forEach(function (element) {   // use handy array forEach method
     //did you know javascript has string interpolation? I didn't! They call 'em template strings apparently
     let content = `<div data-role='collapsible' data-theme='b' data-content-theme='a' data-parm='${element.name}'><h3>${element.name}</h3>
                   <p>Year:${element.year}<br>Genre:${element.genre}<br>
-                  <button class="addButton">Add to library</button><button class="detailButton">View Details</button></p></div>`;
+                  <button data-role='button'class="addButton">Add to library</button>&nbsp<button data-role='button' class="detailButton">View Details</button></p></div>`;
+                  //the button styles worked, and now they don't. Why? Who knows!
       divUserlist.append(content).collapsibleset("refresh");//add the new collapsible widget to the set, then refresh the set
     });
 
@@ -60,7 +54,7 @@ function createList()
   // });
   // divUserlist.append(ul);
 
-  // set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
+  //set up an event for each new li item, if user clicks any, it writes >>that<< items data-parm into the hidden html 
   var classname = document.getElementsByClassName("oneGame");
   Array.from(classname).forEach(function (element) {
         element.addEventListener('click', function(){
@@ -71,6 +65,7 @@ function createList()
             document.location.href = "index.html#details";
         });
     });
+  console.log(gameArray);
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -83,11 +78,17 @@ document.addEventListener("DOMContentLoaded", function () {
     userArray.push(player1);
     userArray.push(player2);
 
+    gameArray.push(new GameObject("game1", 2000, "Real Time Strategy"));
+    gameArray.push(new GameObject("game2", 2001, "First Person Shooter"));
+    gameArray.push(new GameObject("game3", 2002, "Turn Based Strategy"));
+    gameArray.push(new GameObject("game4", 2000, "Action Adventure"));
+    gameArray.push(new GameObject("game5", 2001, "Real Time Strategy"));
+    gameArray.push(new GameObject("game6", 2002, "First Person Shooter"));
     console.log(userArray);
 
-    createList();
+    // createList();
 
-    $(document).on("pagebeforeshow", "#home", function (event) {   // have to use jQuery 
+    $(document).on("pagebeforeshow", "#page1", function (event) {   // have to use jQuery 
     // document.getElementById("IDparmHere").innerHTML = "";
       createList();
     });
