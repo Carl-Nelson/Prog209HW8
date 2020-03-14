@@ -146,9 +146,29 @@
             <!--  uploadReview page content -->
             <div data-role="content" data-theme='e'>
                 <p> 
-                   This page will let the user submit a review for a game, which will then be associated with that game,
-                   and be visible on the other pages if the user clicks the button to show reviews on a game.
-                   That's not gonna be as tricky as it might sound, since we're working with jquery here.
+                  <form>
+                    <fieldset>
+                      <label for="formName">Select a Game to Review:</label>
+                      <select id="formName"name="formName"data-inline="true">
+                        <option value="invalid">Select a game</option>
+                      </select>
+                      <label for="formRating">Rating:</label>
+                      <!-- <input type="number "name="formRating" id="formRating" min="1" max="5"> -->
+                      <select id="formRating"name="formRating"data-inline="true">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <label for="formReview">Your Review:</label>
+                      <textarea name="formReview" id="formReview" rows="5" cols="60"></textarea>
+                      <label for="formUser">Your Name:</label>
+                      <input type="text"name="formUser"id="formUser"data-inline="true">
+                      <input type="button" value="Submit Review" id="formSubmit"data-inline="true">
+                    </fieldset>
+                  </form>
+                  <p id="reviewConfirmation"></p>
                 </p>
                 
             </div>

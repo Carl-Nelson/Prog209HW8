@@ -25,10 +25,8 @@ var userObject = function (Name) {
 
 function createList()
 {
-  //oddly enough the jquery mobile collapsible set stuff below doesn't work unless I use jquery to get the div
   var divUserlist = $("#divUserlist");
-  //and this next line doesn't work unless I use plain ole html to grab the div
-  document.getElementById("divUserlist").innerHTML = "";// remove old data
+  divUserlist.html("");// remove old data, the jquery way
 
   gameArray.forEach(function (element) {
     
@@ -121,7 +119,7 @@ function displayCollection() {
     var collection = $("#collection");
     //and this next line doesn't work unless I use plain ole html to grab the div
     if (gameCollection.length === 0) {
-      document.getElementById("collection").innerHTML = "";
+      collection.html("");
       collection.append("<p>Your library is empty. Add some games!</p>");
     }
     else {
@@ -186,7 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
     gameArray.push(new GameObject("game6", 2002, "First Person Shooter"));
     console.log(userArray);
 
-    reviewArray.push(new ReviewObject("game1","This game sucks.", 1, "firstPerson"));
+    reviewArray.push(new ReviewObject("game1","This game sucks.", 2, "firstPerson"));
+    reviewArray.push(new ReviewObject("game1","Worst game ever.", 1, "SomeGuy"));
     reviewArray.push(new ReviewObject("game2","Game of the year, every year.", 5, "secondPerson"))
 
     //so that the home page isn't empty on first load
@@ -204,17 +203,44 @@ document.addEventListener("DOMContentLoaded", function () {
     $(document).on("pagebeforeshow", "#details", function (event) {   // have to use jQuery 
       let localTitle = document.getElementById("IDparmHere").innerHTML;
       for(let i=0; i < gameArray.length; i++) {   
-        if(gameArray[i].name == localTitle){
+        if(gameArray[i].name === localTitle){
           //document.getElementById("oneName").innerHTML = gameArray[i].name;
           document.getElementById("oneYear").innerHTML = "Year released: " + gameArray[i].year;
           document.getElementById("oneGenre").innerHTML = "Genre: " + gameArray[i].genre;
         }
       }
+      let reviewDiv = document.getElementById("reviewDiv");
+      reviewDiv.innerHTML = "";//clear existing data
       for(let i=0; i < reviewArray.length; i++) {
-        if(reviewArray[i].gameName == localTitle) {
-
+        if(reviewArray[i].gameName === localTitle) {
+          let review = `<div class='oneReview'><h3>Review by ${reviewArray[i].user}</h3><h3>Rating: ${reviewArray[i].rating}/5</h3>
+                        <p>${reviewArray[i].review}</p></div>`;
+          reviewDiv.innerHTML+=review;
         }
       }
+   });
+
+   $(document).on("pagebeforeshow", "#page3", function(event){
+     let gameNameSelector = document.getElementById("formName");
+     gameNameSelector.innerHTML = "<option value='invalid'>Select a game</option>";
+     for (let i = 0; i < gameArray.length; i++) {
+       gameNameSelector.innerHTML += `<option value="${gameArray[i].name}">${gameArray[i].name}</option>`;
+     }
+   });
+
+   $("#page3").on("click", "#formSubmit", function(event){
+     //whole buncha jquery
+     let gameName = $("#formName").val();
+     if (gameName === "invalid") {
+      $("#reviewConfirmation").html("Please select a game");
+     }
+     else {
+      let gameRating = $("#formRating").val();
+      let gameReview = $("#formReview").val();
+      let gameUser = $("#formUser").val();
+      reviewArray.push(new ReviewObject(gameName,gameReview,gameRating,gameUser));
+      $("#reviewConfirmation").html("Review submitted!");
+     }
    });
 
    document.getElementById("buttonSortTitle").addEventListener("click", function () {
