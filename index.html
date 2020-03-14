@@ -40,11 +40,13 @@
             </div>
             <!--  login page content -->
             <div data-role="content" data-theme='e'>
-               <h2> If this were a real website, probably 3 out of 4 of these pages would be the same page!<br>
-                    If I think of another page that would make sense, I'll just fold the Sort page into the other ones.<br>
-                    This home page will be just the main list of games, for now at least. Maybe it'll be a registration page.</h2>
+              <h2>Your game library:</h2>
+              <input type="button" value="Sort By Genre" id="buttonSortGenre" data-inline="true"  />
+              <input type="button" value="Sort By Title" id="buttonSortTitle" data-inline="true"   />
+              <input type="button" value="Sort By Year" id="buttonSortYear" data-inline="true"   />
+              <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=collection></div>
             </div>
-              
+            
             <!--  login page footer -->
             <div data-role="footer" data-theme='b'>
                     <h1>Copyright 2020 by Carl Nelson</h1>
@@ -72,9 +74,11 @@
           </div>
             <!-- t page content -->
             <div data-role="content" data-theme='e'>
-                <h2>This page will allow you to search for a game based on a criteria, e.g. name, year,
-                   possibly genre if I feel like it</h2>
-                   <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=divUserlist></div>
+                <h2>Browse games</h2>
+                <input type="button" value="Sort By Genre" id="buttonSortAllGenre" data-inline="true"  />
+                <input type="button" value="Sort By Title" id="buttonSortAllTitle" data-inline="true"   />
+                <input type="button" value="Sort By Year" id="buttonSortAllYear" data-inline="true"   />
+                <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id=divUserlist></div>
             </div>
               
             <!--  newaccount page footer -->
@@ -106,7 +110,12 @@
           </div>
             <!--  details page content -->
           <div data-role="content" data-theme='e'>
-            <div id=""></div>
+            <h2 id="IDparmHere"></h2>
+            <p id="oneYear"></p>
+            <p id="oneGenre"></p>
+            <h3>Reviews:</h3>
+            <hr>
+            <div id="reviewDiv"></div>
           </div>
               
             <!--  details page footer -->
